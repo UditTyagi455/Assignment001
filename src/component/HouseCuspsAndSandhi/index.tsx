@@ -11,39 +11,35 @@ const HouseCuspsAndSandhi = () => {
 
   return (
     <View>
-<ScrollView
-      contentContainerStyle={{
-        marginTop: 25,
-        display: 'flex',
-        flexDirection: 'row',
-        margin: 10,
-      }}
-      showsHorizontalScrollIndicator={false}
-      horizontal={true}>
-      {route.params.value.map((item, index) => {
-        return (
-          <Table
-            borderStyle={{borderWidth: 2, borderColor: '#c8e1ff', margin: 5}}
-            key={index}>
-            <Row
-              data={Object.keys(item.data[0])}
-              style={styles.head}
-              textStyle={{fontWeight: 'bold', margin: 6, color: 'black'}}
-            />
-                {item.data.map((item, index) => { 
+      <ScrollView
+        contentContainerStyle={{
+          marginTop: 25,
+          display: 'flex',
+          flexDirection: 'row',
+          margin: 10,
+        }}
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}>
+        {route.params.value.map((item, index) => {
+          return (
+            <Table
+              borderStyle={{borderWidth: 2, borderColor: '#c8e1ff', margin: 5}}
+              key={index}>
+              <Row
+                data={Object.keys(item.data[0])}
+                style={styles.head}
+                textStyle={{fontWeight: 'bold', margin: 6, color: 'black'}}
+              />
+              {item.data.map((item, index) => {
                 return (
-                    <Rows
-                        data={[Object.values(item)]}
-                        textStyle={styles.text}
-                    />
-                )})}
-        
-          </Table>
-        );
-      })}
-    </ScrollView>
+                  <Rows data={[Object.values(item)]} textStyle={styles.text} />
+                );
+              })}
+            </Table>
+          );
+        })}
+      </ScrollView>
     </View>
-    
   );
 };
 

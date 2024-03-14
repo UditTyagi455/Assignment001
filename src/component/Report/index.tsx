@@ -34,136 +34,149 @@ const Report = () => {
 
   return (
     <View>
-      <ScrollView
-        contentContainerStyle={{
-          display: 'flex',
-          flexDirection: 'row',
-          marginTop: 25,
-          height: 60,
-        }}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}>
-        {Object.keys(route.params.value)?.map((item, index) => {
-          return (
-            <TouchableWithoutFeedback
-              key={index}
-              onPress={() => openTheTabs(item)}>
-              <View
-                style={{
-                  paddingHorizontal: 22,
-                  borderRadius: 45,
-                  backgroundColor: '#023e8a',
-                  margin: 5,
-                  justifyContent: 'center',
-                }}>
-                <Text style={{color: 'white', padding: 3, zIndex: 999}}>
-                  {item}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          );
-        })}
-      </ScrollView>
-      {array && (
+      <ScrollView>
         <ScrollView
           contentContainerStyle={{
-            marginTop: 25,
             display: 'flex',
             flexDirection: 'row',
-            margin: 10,
-          }}
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}>
-          {array.map((item, index) => {
-            return item?.type === 'KEY_VALUE' ? (
-              <View key={index} style={styles.container}>
-                <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                  <Row
-                    data={Object.keys(item.data)}
-                    style={styles.head}
-                    textStyle={{fontWeight: 'bold', margin: 6, color: 'black'}}
-                  />
-                  <Rows
-                    data={[Object.values(item.data)]}
-                    textStyle={styles.text}
-                  />
-                </Table>
-              </View>
-            ) : null;
-          })}
-        </ScrollView>
-      )}
-      {array && (
-        <ScrollView
-          contentContainerStyle={{
             marginTop: 25,
-            display: 'flex',
-            flexDirection: 'column',
-            margin: 10,
-            // height: Dimensions.get('window').height,
+            height: 60,
           }}
-          showsHorizontalScrollIndicator={false}
-          horizontal={false}>
-          {array?.map((item, index) => {
-            return item?.type == 'PARAGRAPH' ? (
-              <View
-                style={{
-                  marginTop: 10,
-                  flexDirection: 'column',
-                }}
-                key={index}>
-                <Text
-                  style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
-                  {item.heading}
-                </Text>
-                <Text style={{color: 'black'}}>{item.data[0]}</Text>
-              </View>
-            ) : null;
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
+          {Object.keys(route.params.value)?.map((item, index) => {
+            return (
+              <TouchableWithoutFeedback
+                key={index}
+                onPress={() => openTheTabs(item)}>
+                <View
+                  style={{
+                    paddingHorizontal: 22,
+                    borderRadius: 45,
+                    backgroundColor: '#023e8a',
+                    margin: 5,
+                    justifyContent: 'center',
+                  }}>
+                  <Text style={{color: 'white', padding: 3, zIndex: 999}}>
+                    {item}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            );
           })}
         </ScrollView>
-      )}
+        {array && (
+          <ScrollView
+            contentContainerStyle={{
+              marginTop: 25,
+              display: 'flex',
+              flexDirection: 'row',
+              // margin: 10,
+            }}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}>
+            {array.map((item, index) => {
+              return item?.type === 'KEY_VALUE' ? (
+                <View key={index} style={styles.container}>
+                  <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                    <Row
+                      data={Object.keys(item.data)}
+                      style={[
+                        styles.head,
+                        {alignItems: 'center', justifyContent: 'center'},
+                      ]}
+                      textStyle={{
+                        fontWeight: 'bold',
+                        margin: 6,
+                        color: 'black',
+                      }}
+                    />
+                    <Rows
+                      data={[Object.values(item.data)]}
+                      textStyle={styles.text}
+                    />
+                  </Table>
+                </View>
+              ) : null;
+            })}
+          </ScrollView>
+        )}
+        {array && (
+          <ScrollView
+            contentContainerStyle={{
+              marginTop: 25,
+              display: 'flex',
+              flexDirection: 'column',
+              margin: 10,
+              // height: Dimensions.get('window').height,
+            }}
+            showsHorizontalScrollIndicator={false}
+            horizontal={false}>
+            {array?.map((item, index) => {
+              return item?.type == 'PARAGRAPH' ? (
+                <View
+                  style={{
+                    marginTop: 10,
+                    flexDirection: 'column',
+                  }}
+                  key={index}>
+                  <Text
+                    style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
+                    {item.heading}
+                  </Text>
+                  <Text style={{color: 'black'}}>{item.data[0]}</Text>
+                </View>
+              ) : null;
+            })}
+          </ScrollView>
+        )}
 
-      {array && (
-        <ScrollView
-          contentContainerStyle={{
-            marginTop: 25,
-            display: 'flex',
-            flexDirection: 'column',
-            margin: 10,
-          }}
-          showsHorizontalScrollIndicator={false}
-          horizontal={false}>
-          {array?.map((item, index) => {
-            return item?.type == 'KEY_PARAGRAPH' ? (
-              <View
-                style={{
-                  marginTop: 10,
-                  flexDirection: 'column',
-                }}
-                key={index}>
-                {Object.keys(item.data).map((items, key) => {
-                  return (
-                    <View key={Date.now()}>
-                      <Text
-                        style={{
-                          fontSize: 18,
-                          fontWeight: 'bold',
-                          color: 'black',
-                        }}>
-                        {items}
-                      </Text>
-                      { (typeof(Object.values(item.data)[key]) == "object" || Array.isArray(Object.values(item.data)[key]) ) ? <Text>object</Text> : <Text style={{color: 'black'}}>
-                        {Object.values(item.data)[key]}
-                      </Text> }
-                      
-                    </View>
-                  );
-                })}
-              </View>
-            ) : null;
-          })}
-        </ScrollView>
-      )}
+        {array && (
+          <ScrollView
+            contentContainerStyle={{
+              marginTop: 25,
+              display: 'flex',
+              flexDirection: 'column',
+              margin: 10,
+            }}
+            showsHorizontalScrollIndicator={false}
+            horizontal={false}>
+            {array?.map((item, index) => {
+              return item?.type == 'KEY_PARAGRAPH' ? (
+                <View
+                  style={{
+                    marginTop: 10,
+                    flexDirection: 'column',
+                  }}
+                  key={index}>
+                  {Object.keys(item.data).map((items, key) => {
+                    return (
+                      <View key={Date.now()}>
+                        <Text
+                          style={{
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            color: 'black',
+                          }}>
+                          {items}
+                        </Text>
+                        {typeof Object.values(item.data)[key] == 'object' ||
+                        Array.isArray(Object.values(item.data)[key]) ? (
+                          <Text>object</Text>
+                        ) : (
+                          <Text style={{color: 'black'}}>
+                            {Object.values(item.data)[key]}
+                          </Text>
+                        )}
+                      </View>
+                    );
+                  })}
+                </View>
+              ) : null;
+            })}
+          </ScrollView>
+        )}
+      </ScrollView>
     </View>
   );
 };
