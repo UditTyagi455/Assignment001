@@ -21,13 +21,13 @@ Generate a table where the keys of each element object represent the table headi
 
 # Screenshots
 (i) Create a user interface featuring tabs, each tab displaying corresponding details.<br><br>
-![alt text](./assets/Image/Screenshot_01.png)
+![alt text](./assets/Image/Screenshot_001.png)
 
 (ii.) Type 2: PARAGRAPH
 An array of strings or a single string is given in the "data" field.
 Display the strings as provided.
 
-![alt text](./assets/Image/Screenshot_02.png)
+![alt text](./assets/Image/Screenshot_002.png)
 
 
 
